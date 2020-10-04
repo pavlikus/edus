@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}{{ course.name }}{% endblock %}
+{% block editor_buttons %}
+<button form="form" class="btn btn-success mr-1" type="submit">Save</button>
+{% endblock %}
+{% block content %}
+  <section id="teacher">
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col">
+                <form id="form" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock %}
+ 

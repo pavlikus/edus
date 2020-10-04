@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}{{ course.name }}{% endblock %}
+{% block editor_buttons %}
+<a href="{{ course.get_edit_url }}"><button class="btn btn-primary" type="button">Edit</button></a>
+{% endblock %}
+{% block content %}
+  <section id="teacher">
+    <div class="container mt-5 pt-3 pb-2">
+      <div class="row mt-5 pt-3 pb-2">
+        <div class="col-md-4">
+            {% thumbnail course.logo '360x360' as im %}
+            <img class="img-fluid rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ teacher.full_name }}" />
+            {% endthumbnail %}
+        </div>
+        <div class="col-md-8">
+            <h1>{{ course.name }}</h1>
+            <div class="description">{{ course.description|safe }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <sections id="courses">
+    <div class="container pt-3 pb-2">
+      <div class="row pt-3 pb-2 mb-3">
+      <div class="col"><h2>Teachers on this Course</h2></div>
+      </div>
+      <div class="row">
+      {% for teacher in course.teachers.all %}
+        <div class="col-md-3 text-center">
+            {% thumbnail teacher.avatar '220x220' crop='center' as im %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="img-fluid rounded-circle mb-3" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ teacher.full_name }}" /></a>
+            {% endthumbnail %}
+            <div class="name">{{ teacher.full_name }}</div>
+            <div class="position"><small>{{ teacher.position }}</small></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+ 

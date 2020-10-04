@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}Teachers in EDUS{% endblock %}
+{% block content %}
+  <section id="teachers">
+    <div class="container mt-5 pt-3 pb-2">
+      <div class="row mt-5 pt-3 pb-2">
+        {% for teacher in teachers %}
+        <div class="col-md-3 text-center mb-5">
+            {% thumbnail teacher.avatar '220x220' crop='center' as im %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="img-fluid rounded-circle mb-3" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ teacher.full_name }}" /></a>
+            {% endthumbnail %}
+            <div class="name">{{ teacher.full_name }}</div>
+            <div class="position"><small>{{ teacher.position }}</small></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
