@@ -134,5 +134,8 @@ dmypy.json
 .\#*
 
 # Working test output file
-*.json
+#*.json
 *.csv
+
+#sorl-thumnail cache
+*/cache
