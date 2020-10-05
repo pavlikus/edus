@@ -3,8 +3,8 @@
 {% block title %}{{ teacher.title }}{% endblock %}
 {% block content %}
   <section id="teacher">
-    <div class="container mt-5 pt-3 pb-2">
-      <div class="row mt-5 pt-3 pb-2">
+    <div class="container pt-5 pb-2">
+      <div class="row pt-3 pb-2">
         <div class="col-md-4">
             {% thumbnail teacher.avatar '360x360' crop='center' as im %}
             <img class="img-fluid rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ teacher.full_name }}" />
