@@ -1,12 +1,21 @@
+from datetime import datetime
+
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
+from courses.models import CourseStream
+
 
 class Index(TemplateView):
-    
+
     http_method_names = ['get']
     template_name = 'index.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data()
+        context['courses'] = CourseStream.objects.filter(date_start__gte=datetime.now())
+        return context
     
 
 class AccountLoginView(LoginView):
