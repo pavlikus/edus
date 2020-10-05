@@ -25,7 +25,7 @@ SECRET_KEY = 'ovwn81rm6eb+2pf4@div)4#tsbq!k_64v5j&f1rpk2n6^16ykn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'edus',
     'courses',
     'members',
     'sorl.thumbnail'
@@ -121,6 +120,7 @@ USE_TZ = True
 # SORL THUMBNAIL
 if DEBUG:
     THUMBNAIL_DEBUG = True
+
 THUMBNAIL_COLORSPACE = 'sRGB'
 THUMBNAIL_PRESERVE_FORMAT = True
 THUMBNAIL_PADDING = True
@@ -134,5 +134,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = ''  # os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-TEST_RUNNER = 'edus.runner.PytestTestRunner'

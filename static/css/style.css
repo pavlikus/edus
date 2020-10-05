@@ -3,18 +3,11 @@ body{
     font:300 1.2rem/1.45 'Dosis', 'Arial', 'Helvetica', sans-serif 
 } 
 h1, h2, h3,
-.position, .date{
+.position{
     color:#202127
 }
 .position{
     font-weight:400
-}
-label{
-    color:#202126
-}
-label.required::after{
-    content:'*';
-    color:red
 }
 /* Header */
 header a.navbar-brand{

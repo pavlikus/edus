@@ -2,14 +2,12 @@
 {% load thumbnail %}
 {% block title %}{{ course.name }}{% endblock %}
 {% block editor_buttons %}
-<a href="{% url 'course_add' %}"><button class="btn btn-success mr-1" type="button">Add</button></a>
-<a href="{{ course.get_edit_url }}"><button class="btn btn-primary mr-1" type="button">Edit</button></a>
-<a href="{{ course.get_delete_url }}"><button class="btn btn-danger" type="button">Delete</button></a>
+<a href="{{ course.get_edit_url }}"><button class="btn btn-primary" type="button">Edit</button></a>
 {% endblock %}
 {% block content %}
   <section id="teacher">
-    <div class="container pt-5 pb-2">
-      <div class="row pt-3 pb-2">
+    <div class="container mt-5 pt-3 pb-2">
+      <div class="row mt-5 pt-3 pb-2">
         <div class="col-md-4">
             {% thumbnail course.logo '360x360' as im %}
             <img class="img-fluid rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ teacher.full_name }}" />
