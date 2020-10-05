@@ -1,8 +1,10 @@
+from django import forms
 from django.views.generic import CreateView, DetailView, DeleteView
 from django.views.generic import ListView, UpdateView
 from django.urls import reverse_lazy
 
 from .models import Course
+from .forms import CourseCreateForm
 
 
 class CoursesListView(ListView):
@@ -22,7 +24,7 @@ class CourseDetailView(DetailView):
 class CourseCreateView(CreateView):
 
     model = Course
-    fields = '__all__'
+    form_class = CourseCreateForm
 
 
 class CourseDeleteView(DeleteView):
