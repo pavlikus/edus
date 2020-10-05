@@ -138,4 +138,4 @@ dmypy.json
 *.csv
 
 #sorl-thumnail cache
-*/cache
+*/cache/*
