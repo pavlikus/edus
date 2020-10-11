@@ -1,6 +1,8 @@
 FROM python:3.7
 
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 WORKDIR /app
 
 COPY requirements.txt .
@@ -15,4 +17,4 @@ RUN python manage.py loaddata members.json courses.json
 # admin:password
 RUN python manage.py create_admin
 
-CMD python manage.py runserver 0.0.0.0:8000
+#CMD python manage.py runserver 0.0.0.0:8000

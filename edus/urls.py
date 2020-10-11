@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import Index, AccountLoginView, AccountLogoutView
+from contacts.views import ContactView
 
 
 urlpatterns = [
@@ -29,5 +30,6 @@ urlpatterns = [
     path('logout/', AccountLogoutView.as_view(), name='logout'),
     path('courses/', include('courses.urls')),
     path('teachers/', include('members.urls', namespace='teachers')),
+    path('contact/', ContactView.as_view(), name='contact'),
     #path('students/', include('members.urls', namespace='students')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

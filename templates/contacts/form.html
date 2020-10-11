@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Contact Form{% endblock %}
+{% block css %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" type="text/css">{% endblock %}
+{% block content %}
+  <section id="login">
+    <div class="container py-5">
+        <div class="row pt-5 pb-2 justify-content-center"><div class="col-lg-8 col-sm-12"><h1>Contact Form</h1></div></div>
+        <div class="row pt-2 pb-3 justify-content-center">
+            <div class="col-lg-8 col-sm-12 py-3">
+                <form id="contact-form" method="POST">
+                {% for field in form %}
+                  <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <div class="invalid-feedback">{{ field.errors.as_text }}</div>
+                </div>
+                {% endfor %}
+                    {% csrf_token %}
+                    <button class="btn btn-success mt-3 mr-1" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock %}
+{% block js %}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.7/bootstrap-notify.min.js"></script>
+      {% if messages %}
+       {% for message in messages %}
+      <script>
+        $.notify({
+            title: '{{ message }}',
+          },{
+            type: '{{ message.tags }}',
+            delay: 10000,
+            animate: {
+              enter: 'animated bounceInDown',
+              exit: 'animated bounceOutUp'
+            }
+        });
+      </script>
+      {% endfor %}
+      {% endif %}
+{% endblock %}
+ 
+ 

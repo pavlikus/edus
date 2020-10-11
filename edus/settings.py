@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'edus',
     'courses',
     'members',
+    'contacts',
     'sorl.thumbnail'
 ]
 
@@ -118,6 +119,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+# EMAIL_HOST = ''
+# EMAIL_USE_SSL = True
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+MANAGERS = ['admin@example.com']
+
 # SORL THUMBNAIL
 if DEBUG:
     THUMBNAIL_DEBUG = True
@@ -136,3 +148,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEST_RUNNER = 'edus.runner.PytestTestRunner'
+
+# celery
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULE = {}
