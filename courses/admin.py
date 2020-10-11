@@ -22,8 +22,6 @@ class CourseStreamAdmin(admin.ModelAdmin):
 
     list_display = 'name', 'date_start', 'date_end'
     inlines = [ScheduleInline]
-    
-    # prepopulated_fields = {"slug": ("name",)}
 
 
 admin.site.register(Schedule)

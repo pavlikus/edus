@@ -13,11 +13,13 @@ class ContactView(FormView):
     success_url = reverse_lazy('contact')
 
     def form_valid(self, form):
+
         form.save()
         try:
-            form.send_mail()
-            success_message = 'Success! We just sent you a confirmation email'
+            form.send_emails()
+            success_message = "Success! We just sent you a confirmation email"
             messages.success(self.request, success_message)
         except Exception as e:
-            messages.error(self.request, e)
+            # messages.warning(self.request, e)
+            messages.warning(self.request, "Some errors. Email not sent to you")
         return super().form_valid(form)

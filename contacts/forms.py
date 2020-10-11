@@ -26,7 +26,8 @@ class ContactForm(forms.ModelForm):
             attrs.update({'class': attrs.get('class', '') + ' is-invalid'})
         return data
 
-    def send_mail(self):
+    def send_emails(self):
+
         first_name = self.cleaned_data['first_name']
         recipient = self.cleaned_data['email']
         message = self.cleaned_data['message']
