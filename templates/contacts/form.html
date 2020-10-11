@@ -29,7 +29,8 @@
        {% for message in messages %}
       <script>
         $.notify({
-            title: '{{ message }}',
+            title: '{{ message.tags|title }}',
+            message: '{{ message }}'
           },{
             type: '{{ message.tags }}',
             delay: 10000,
