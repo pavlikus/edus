@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, re_path
 
-from .views import CourseCreateView, CourseDeleteView, CourseEditView, CourseDetailView, CoursesListView
+from .views import CourseCreateView, CourseDeleteView, CourseEditView, CourseDetailView
+from .views import CoursesView, CoursesListView
 
 
 urlpatterns = [
-    path('', CoursesListView.as_view(), name='courses'),
+    path('', CoursesView.as_view(), name='courses'),
     path('add/', login_required(CourseCreateView.as_view(), login_url='/login/'), name='course_add'),
     path('<slug>/', CourseDetailView.as_view(), name='course'),
     path('<slug>/edit/', login_required(CourseEditView.as_view(), login_url='/login/'), name='course_edit'),

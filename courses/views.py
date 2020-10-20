@@ -1,10 +1,20 @@
 from django import forms
 from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import TemplateView
 from django.views.generic import ListView, UpdateView
 from django.urls import reverse_lazy
 
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import generics
+
 from .models import Course
 from .forms import CourseCreateForm
+from .serializers import CourseListSerializer
+
+
+class CoursesView(TemplateView):
+
+    template_name = 'courses/index.html'
 
 
 class CoursesListView(ListView):
@@ -39,3 +49,9 @@ class CourseEditView(UpdateView):
     fields = 'name', 'description'
     model = Course
     template_name = 'courses/course_edit.html'
+
+
+class CourseAPIListView(ModelViewSet):
+
+    queryset = Course.objects.all()
+    serializer_class = CourseListSerializer

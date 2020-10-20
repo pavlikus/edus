@@ -8,18 +8,38 @@
   <section id="courses">
     <div class="container mt-5 pt-3 pb-2">
       <div class="row pt-5 pb-2"><div class="col-lg-8 col-sm-12"><h1>Our Courses</h1></div></div>
-      <div class="row pt-3 pb-2">
-      <div class="card-deck px-3">
-        {% for course in courses %}
-        <div class="card text-center px-0 pb-2">
-            {% thumbnail course.logo '220x180' as im %}
-            <a href="{{ course.get_absolute_url }}"><img class="img-fluid mb-3" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ course.name }}" /></a>
-            {% endthumbnail %}
-            <div class="name px-2">{{ course.name }}</div>
-        </div>
-        {% endfor %}
-    </div>
+        <div class="row pt-3 pb-2">
+            <div class="card-deck px-3">
+            </div>
       </div>
     </div>
   </section>
+{% endblock %}
+{% block js%}
+<script>
+    $(document).ready( function () {
+        var query = "query {courses { name logo url }}";
+        var csrftoken = '{{ csrf_token }}';
+        $.ajax({
+            method: 'POST',
+            url: '/graphql/',
+            data: JSON.stringify({"query": query}),
+            contentType: 'application/json',
+            headers: {"X-CSRFToken": csrftoken},
+            beforeSend: function(){
+                $("#courses .card-deck").html("Loading courses...");
+            },
+            success: function (result) {
+                $("#courses .card-deck").html("");
+                $.each(result.data.courses, function(i, course){
+                    console.log(course);
+                    var row = '<div class="card text-center px-0 pb-2">' +
+                    '<a href="' + course.url + '"><img class="img-fluid mb-3" src="' + course.logo + '" width="220" height="180" alt="' + course.name + '"></a>' +
+                    '<div class="name px-2">' + course.name + '</div></div>'
+                    $("#courses .card-deck").append(row);
+                });
+            }
+        });
+    });
+</script>
 {% endblock %}
